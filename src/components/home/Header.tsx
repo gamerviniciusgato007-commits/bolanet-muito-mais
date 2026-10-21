@@ -43,7 +43,7 @@ export function Header() {
 
 export function WhatsAppFloat() {
   return (
-    <a href="https://wa.me/" aria-label="Falar com a Bolanet pelo WhatsApp" className="fixed bottom-5 right-5 z-50 grid h-14 w-14 place-items-center rounded-full bg-highlight text-highlight-foreground shadow-brand transition-transform hover:scale-105">
+    <a href="https://wa.me/5561998076886" aria-label="Falar com a Bolanet pelo WhatsApp" className="fixed bottom-5 right-5 z-50 grid h-14 w-14 place-items-center rounded-full bg-highlight text-highlight-foreground shadow-brand transition-transform hover:scale-105">
       <Headphones className="h-6 w-6" />
     </a>
   );
