@@ -6,10 +6,11 @@ import { Input } from "@/components/ui/input";
 
 const WA_NUMBER = "5561998076886";
 
-// Modal de captura: coleta nome + CEP e redireciona pro WhatsApp com mensagem pronta
+// Modal de captura: coleta nome + CEP + mensagem e redireciona pro WhatsApp com mensagem pronta
 function PlanModal({ planName, onClose }: { planName: string; onClose: () => void }) {
   const [name, setName] = useState("");
   const [cep, setCep] = useState("");
+  const [msg, setMsg] = useState("");
   const [error, setError] = useState("");
 
   function handleSubmit(e: FormEvent) {
@@ -17,10 +18,10 @@ function PlanModal({ planName, onClose }: { planName: string; onClose: () => voi
     if (!name.trim()) { setError("Por favor, informe seu nome."); return; }
     const digits = cep.replace(/\D/g, "");
     if (digits.length !== 8) { setError("Digite um CEP válido com 8 números."); return; }
-    const msg = encodeURIComponent(
-      `Olá! Me chamo ${name.trim()} e tenho interesse no plano ${planName} da Bolanet. Meu CEP é ${cep.trim()}. Pode me passar mais informações?`
+    const text = encodeURIComponent(
+      `Olá! Me chamo ${name.trim()} e tenho interesse no plano ${planName} da Bolanet. Meu CEP é ${cep.trim()}.${msg.trim() ? ` ${msg.trim()}` : " Pode me passar mais informações?"}`
     );
-    window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, "_blank");
+    window.open(`https://wa.me/${WA_NUMBER}?text=${text}`, "_blank");
     onClose();
   }
 
@@ -43,6 +44,10 @@ function PlanModal({ planName, onClose }: { planName: string; onClose: () => voi
           <div>
             <label htmlFor="modal-cep" className="mb-1 block text-xs font-extrabold">Seu CEP</label>
             <Input id="modal-cep" value={cep} onChange={e => setCep(e.target.value)} placeholder="00000-000" inputMode="numeric" />
+          </div>
+          <div>
+            <label htmlFor="modal-msg" className="mb-1 block text-xs font-extrabold">Mensagem (opcional)</label>
+            <Input id="modal-msg" value={msg} onChange={e => setMsg(e.target.value)} placeholder="Alguma dúvida ou observação?" />
           </div>
           {error && <p role="alert" className="text-sm font-bold text-destructive">{error}</p>}
           <Button type="submit" size="xl" variant="sunshine" className="mt-2 w-full">
@@ -224,6 +229,7 @@ function simulateCoverageLookup(_query: string) {
 export function Cobertura() {
   const [name, setName] = useState("");
   const [cep, setCep] = useState("");
+  const [msg, setMsg] = useState("");
   const [error, setError] = useState("");
 
   function submit(e: FormEvent) {
@@ -232,10 +238,10 @@ export function Cobertura() {
     const digits = cep.replace(/\D/g, "");
     if (digits.length !== 8) { setError("Digite um CEP válido com 8 números."); return; }
     setError("");
-    const msg = encodeURIComponent(
-      `Olá! Me chamo ${name.trim()} e quero verificar se a Bolanet atende meu endereço. Meu CEP é ${cep.trim()}.`
+    const text = encodeURIComponent(
+      `Olá! Me chamo ${name.trim()} e quero verificar se a Bolanet atende meu endereço. Meu CEP é ${cep.trim()}.${msg.trim() ? ` ${msg.trim()}` : ""}`
     );
-    window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, "_blank");
+    window.open(`https://wa.me/${WA_NUMBER}?text=${text}`, "_blank");
   }
 
   return (
@@ -243,7 +249,7 @@ export function Cobertura() {
       <div className="section-shell grid items-center gap-10 lg:grid-cols-[0.8fr_1.2fr]">
         <div>
           <MapPin className="h-11 w-11 text-highlight" />
-          <h2 className="display-title mt-5 text-4xl sm:text-5xl">Veja se a Bolanet já chegou até vocé.</h2>
+          <h2 className="display-title mt-5 text-4xl sm:text-5xl">Veja se a Bolanet já chegou até você.</h2>
         </div>
         <form onSubmit={submit} className="rounded-lg bg-background p-5 text-foreground sm:p-8">
           <p className="mb-4 text-sm font-extrabold">Informe seus dados e verificamos a cobertura pelo WhatsApp</p>
@@ -255,6 +261,10 @@ export function Cobertura() {
             <div>
               <label htmlFor="cov-cep" className="mb-1 block text-xs font-extrabold">Seu CEP</label>
               <Input id="cov-cep" value={cep} onChange={e => setCep(e.target.value)} placeholder="00000-000" inputMode="numeric" className="h-12 text-base" />
+            </div>
+            <div>
+              <label htmlFor="cov-msg" className="mb-1 block text-xs font-extrabold">Mensagem (opcional)</label>
+              <Input id="cov-msg" value={msg} onChange={e => setMsg(e.target.value)} placeholder="Alguma dúvida?" className="h-12 text-base" />
             </div>
             {error && <p role="alert" className="text-sm font-bold text-destructive">{error}</p>}
             <Button size="xl" variant="sunshine" className="w-full">Verificar cobertura pelo WhatsApp</Button>
