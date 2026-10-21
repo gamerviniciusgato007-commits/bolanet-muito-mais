@@ -17,7 +17,7 @@ export function Hero() {
       <div className="absolute inset-0 bg-primary/85" />
       <div className="section-shell relative z-10 grid items-center gap-7 py-10 lg:min-h-[650px] lg:grid-cols-[0.82fr_1.18fr] lg:gap-12 lg:py-14">
         <div className="reveal text-primary-foreground">
-          <p className="mb-3 text-xs font-black uppercase text-highlight sm:text-sm">VOCÊ AINDA TEM A INTERNET COMUM? </p>
+          <p className="mb-3 text-xs font-black uppercase text-highlight sm:text-sm">VOCÊ AINDA TEM A INTERNET COMUM? </p>
           <h1 className="display-title max-w-xl text-4xl sm:text-5xl lg:text-6xl">VEJA A INTERNET DO FUTURO</h1>
           <p className="mt-4 max-w-lg text-base font-extrabold leading-snug sm:text-xl">Não vendemos só internet. Entregamos soluções para cuidar de tudo o que importa.</p>
           <ul className="mt-6 grid max-w-xl grid-cols-1 gap-2.5 sm:grid-cols-2" aria-label="Soluções incluídas nos planos">
@@ -32,12 +32,10 @@ export function Hero() {
 
         <div className="grid min-w-0 grid-cols-2 gap-2.5 sm:gap-5" aria-label="Planos em destaque">
           <article className="flex min-w-0 flex-col rounded-lg border border-primary-foreground/30 bg-background p-3 text-foreground shadow-brand sm:p-6">
+            <span className="mb-2 w-fit rounded-full bg-primary/10 px-2 py-1 text-[8px] font-black uppercase text-primary sm:text-[9px]">Mais popular</span>
             <p className="text-xs font-black uppercase text-primary">Plano</p>
-            <h2 className="mt-1 text-xl font-black text-primary sm:text-3xl">Infinity</h2>
-            <div className="mt-3 flex min-w-0 flex-wrap items-end gap-x-1 text-primary sm:mt-5 sm:flex-nowrap">
-              <span className="font-display text-3xl font-black sm:text-5xl">R$ 119</span>
-              <span className="pb-1 text-[10px] font-bold sm:text-xs">/mês</span>
-            </div>
+            <h2 className="mt-1 text-xl font-black text-primary sm:text-3xl">Bolanet Plus</h2>
+            <p className="mt-3 text-[10px] font-bold text-muted-foreground sm:text-xs">Valor por região — consulte pelo WhatsApp</p>
             <ul className="my-4 space-y-2 text-[11px] font-bold leading-snug sm:my-5 sm:text-sm">
               <li className="flex gap-1.5"><Check className="h-4 w-4 shrink-0 text-primary" />Internet sem limites de velocidade</li>
               <li className="flex gap-1.5"><Check className="h-4 w-4 shrink-0 text-primary" />Médicos Online</li>
@@ -45,17 +43,14 @@ export function Hero() {
               <li className="flex gap-1.5"><Check className="h-4 w-4 shrink-0 text-primary" />Cursos online de plantas</li>
               <li className="flex gap-1.5"><Check className="h-4 w-4 shrink-0 text-primary" />Clube Bolanet com descontos</li>
             </ul>
-            <Button asChild size="lg" className="mt-auto w-full px-2 text-xs sm:text-sm"><a href="#cobertura">Escolher Infinity</a></Button>
+            <Button asChild size="lg" className="mt-auto w-full px-2 text-xs sm:text-sm"><a href="#planos">Ver plano Plus</a></Button>
           </article>
 
           <article className="relative flex min-w-0 flex-col rounded-lg border-2 border-highlight bg-background p-3 text-foreground shadow-brand sm:p-6">
-            <span className="mb-2 w-fit rounded-full bg-highlight px-2 py-1 text-[8px] font-black uppercase text-highlight-foreground sm:text-[9px]">Mais completo</span>
+            <span className="mb-2 w-fit rounded-full bg-highlight px-2 py-1 text-[8px] font-black uppercase text-highlight-foreground sm:text-[9px]">Recomendado</span>
             <p className="text-xs font-black uppercase text-primary">Plano</p>
-            <h2 className="mt-1 text-xl font-black leading-tight text-primary sm:text-3xl">Infinity Turbo</h2>
-            <div className="mt-3 flex min-w-0 flex-wrap items-end gap-x-1 text-primary sm:mt-5 sm:flex-nowrap">
-              <span className="font-display text-3xl font-black sm:text-5xl">R$ 139</span>
-              <span className="pb-1 text-[10px] font-bold sm:text-xs">/mês</span>
-            </div>
+            <h2 className="mt-1 text-xl font-black leading-tight text-primary sm:text-3xl">Bolanet Pro</h2>
+            <p className="mt-3 text-[10px] font-bold text-muted-foreground sm:text-xs">Valor por região — consulte pelo WhatsApp</p>
             <ul className="my-4 space-y-2 text-[11px] font-bold leading-snug sm:my-5 sm:text-sm">
               <li className="flex gap-1.5"><Check className="h-4 w-4 shrink-0 text-primary" />Internet sem limites de velocidade</li>
               <li className="flex gap-1.5"><Check className="h-4 w-4 shrink-0 text-primary" />Médicos Online</li>
@@ -65,7 +60,7 @@ export function Hero() {
               <li className="flex gap-1.5"><Check className="h-4 w-4 shrink-0 text-primary" />Câmera para vigiar sua casa 24h por dia</li>
               <li className="flex gap-1.5"><Check className="h-4 w-4 shrink-0 text-primary" />Gravação das imagens na nuvem</li>
             </ul>
-            <Button asChild size="lg" variant="sunshine" className="mt-auto w-full px-2 text-xs sm:text-sm"><a href="#cobertura">Quero o Turbo</a></Button>
+            <Button asChild size="lg" variant="sunshine" className="mt-auto w-full px-2 text-xs sm:text-sm"><a href="#planos">Ver plano Pro</a></Button>
           </article>
         </div>
       </div>
