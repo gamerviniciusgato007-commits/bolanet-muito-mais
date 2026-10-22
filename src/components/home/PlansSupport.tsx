@@ -61,6 +61,7 @@ function PlanModal({ planName, onClose }: { planName: string; onClose: () => voi
 
 type PlanDef = {
   name: string;
+  speed: string;
   price: string;
   tag?: string;
   highlight?: boolean;
@@ -70,6 +71,7 @@ type PlanDef = {
 const plans: PlanDef[] = [
   {
     name: "Bolanet 500",
+    speed: "500",
     price: "R$99,90",
     tag: "Mais popular",
     highlight: true,
@@ -86,6 +88,7 @@ const plans: PlanDef[] = [
   },
   {
     name: "Bolanet 750",
+    speed: "750",
     price: "R$119,90",
     tag: "Recomendado",
     highlight: true,
@@ -106,34 +109,57 @@ function PlanCard({ plan }: { plan: PlanDef }) {
   return (
     <>
       {open && <PlanModal planName={plan.name} onClose={() => setOpen(false)} />}
-      <article className={`relative flex min-w-0 flex-col overflow-hidden rounded-lg bg-background p-5 shadow-brand sm:p-8 ${plan.highlight ? "border-2 border-highlight lg:scale-[1.03] z-10" : "border border-primary/40"}`}>
-        {plan.tag && (
-          <span className="mb-3 self-center rounded-full bg-highlight px-3 py-1 text-[9px] font-black uppercase text-highlight-foreground sm:text-xs">
-            {plan.tag}
-          </span>
-        )}
-        <p className="text-center text-xs font-black uppercase text-primary sm:text-sm">{plan.name}</p>
-        <div className="mt-3 flex items-baseline justify-center gap-1">
-          <span className="text-3xl font-black text-foreground sm:text-4xl">{plan.price}</span>
-          <span className="text-sm text-muted-foreground">/mês</span>
+      <article className={`relative flex min-w-0 flex-col overflow-hidden rounded-lg bg-background shadow-brand ${plan.highlight ? "border-2 border-highlight lg:scale-[1.03] z-10" : "border border-primary/40"}`}>
+        {/* Topo — faixa visual de velocidade */}
+        <div className="relative flex flex-col gap-1 overflow-hidden bg-white px-6 py-5">
+          {/* Número fantasma */}
+          <div
+            className="pointer-events-none absolute -bottom-2 -right-1 select-none font-display text-[88px] font-black leading-none"
+            style={{ color: 'oklch(0.245 0.125 314)', opacity: 0.07 }}
+            aria-hidden="true"
+          >
+            {plan.speed}
+          </div>
+          {plan.tag && (
+            <span
+              className="w-fit rounded-full px-3 py-1 text-[9px] font-black uppercase"
+              style={{ background: 'oklch(0.82 0.17 89)', color: 'oklch(0.2 0.055 314)' }}
+            >
+              {plan.tag}
+            </span>
+          )}
+          <p
+            className="font-display text-[28px] font-black leading-none"
+            style={{ color: 'oklch(0.245 0.125 314)', letterSpacing: '-0.5px' }}
+          >
+            {plan.speed} <span className="text-sm font-semibold opacity-65">Mbps</span>
+          </p>
         </div>
-        <div className="my-5 h-px bg-border" />
-        <ul className="space-y-2.5 sm:space-y-3">
-          {plan.features.map(item => (
-            <li key={item} className={`flex items-start gap-2 text-sm font-semibold leading-snug sm:text-base ${item.includes("adicional") ? "font-black text-primary" : ""}`}>
-              <Check className="h-4 w-4 shrink-0 text-primary sm:h-5 sm:w-5" />
-              {item}
-            </li>
-          ))}
-        </ul>
-        <Button
-          size="xl"
-          variant={plan.highlight ? "sunshine" : "default"}
-          className="mt-6 w-full text-sm font-extrabold sm:text-base"
-          onClick={() => setOpen(true)}
-        >
-          Assinar agora
-        </Button>
+        {/* Corpo do card */}
+        <div className="flex flex-1 flex-col p-5 sm:p-8">
+          <p className="text-center text-xs font-black uppercase text-primary sm:text-sm">{plan.name}</p>
+          <div className="mt-3 flex items-baseline justify-center gap-1">
+            <span className="text-3xl font-black text-foreground sm:text-4xl">{plan.price}</span>
+            <span className="text-sm text-muted-foreground">/mês</span>
+          </div>
+          <div className="my-5 h-px bg-border" />
+          <ul className="space-y-2.5 sm:space-y-3">
+            {plan.features.map(item => (
+              <li key={item} className={`flex items-start gap-2 text-sm font-semibold leading-snug sm:text-base ${item.includes("adicional") ? "font-black text-primary" : ""}`}>
+                <Check className="h-4 w-4 shrink-0 text-primary sm:h-5 sm:w-5" />
+                {item}
+              </li>
+            ))}
+          </ul>
+          <Button
+            size="xl"
+            variant={plan.highlight ? "sunshine" : "default"}
+            className="mt-6 w-full text-sm font-extrabold sm:text-base"
+            onClick={() => setOpen(true)}
+          >
+            Assinar agora
+          </Button>
+        </div>
       </article>
     </>
   );
@@ -308,7 +334,7 @@ const faqs = [
   ["Quais planos a Bolanet oferece?", "Temos quatro opções: Start, Plus, Pro e Ultra. Os planos Plus e Pro são os mais escolhidos pelos nossos clientes. Fale com nossa equipe pelo WhatsApp para saber qual se encaixa melhor na sua realidade."],
   ["Como sei qual plano é ideal pra mim?", "Nossa equipe te orienta pelo WhatsApp. Informe seu CEP e em minutos você sabe a disponibilidade e o plano certo para sua região."],
   ["O que está incluído em todos os planos?", "Todos os planos incluem internet sem limites de velocidade e cursos online de plantas. A partir do Plus, você acrescenta Médicos Online ou +150 canais. Do Pro em diante, você tem os dois. O Clube Bolanet com Carteirinha é exclusivo do plano Ultra."],
-  ["O que o plano Plus tem a mais que o Start?", "No Plus você escolhe entre Médicos Online (telemedicina) ou +150 canais de IPTV — um benefício extra de acordo com o que faz mais sentido pra você."],
+  ["O que o plano Plus tem a mais que o Start?", "No Plus você escolhe entre Médicos Online (telemedicina) ou +150 canais de IPTV — um benefício extra de acordo com o que faz mais sentido pra vocé."],
   ["O que os planos Pro e Ultra têm a mais?", "Pro e Ultra incluem os dois benefícios juntos: Médicos Online e +150 canais. O Ultra acrescenta ainda o Clube Bolanet com Carteirinha física e digital."],
   ["Como funciona Médicos Online?", "Clientes Bolanet contam com atendimento médico online para cuidar da saúde sem sair de casa. Disponível a partir do Bolanet Plus."],
   ["Como acesso os mais de 150 canais?", "Os detalhes de acesso são informados pela equipe Bolanet durante a contratação. Disponível a partir do Bolanet Plus."],
