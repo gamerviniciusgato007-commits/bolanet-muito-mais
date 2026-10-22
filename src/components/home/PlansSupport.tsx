@@ -61,6 +61,7 @@ function PlanModal({ planName, onClose }: { planName: string; onClose: () => voi
 
 type PlanDef = {
   name: string;
+  price: string;
   tag?: string;
   highlight?: boolean;
   features: string[];
@@ -68,57 +69,38 @@ type PlanDef = {
 
 const plans: PlanDef[] = [
   {
-    name: "Bolanet Start",
-    features: [
-      "Internet sem limites de velocidade",
-      "Instalação incluída",
-      "Cursos online de plantas",
-      "Atendimento via WhatsApp",
-      "Câmera 24h de vigilância (adicional R$20/mês)",
-    ],
-  },
-  {
-    name: "Bolanet Plus",
+    name: "Bolanet 500",
+    price: "R$99,90",
     tag: "Mais popular",
     highlight: true,
     features: [
-      "Internet sem limites de velocidade",
+      "Internet até 500 Mbps",
       "Instalação incluída",
+      "Telemedicina — Médicos Online",
+      "+150 canais de TV",
+      "Clube Bolanet — Carteirinha física e digital",
       "Cursos online de plantas",
-      "Médicos Online OU +150 canais (você escolhe 1)",
       "Atendimento via WhatsApp",
       "Câmera 24h de vigilância (adicional R$20/mês)",
     ],
   },
   {
-    name: "Bolanet Pro",
+    name: "Bolanet 750",
+    price: "R$119,90",
     tag: "Recomendado",
     highlight: true,
     features: [
-      "Internet sem limites de velocidade",
+      "Internet até 750 Mbps",
       "Instalação incluída",
-      "Cursos online de plantas",
-      "Médicos Online",
-      "+150 canais",
-      "Atendimento via WhatsApp",
-      "Câmera 24h de vigilância (adicional R$20/mês)",
-    ],
-  },
-  {
-    name: "Bolanet Ultra",
-    features: [
-      "Internet sem limites de velocidade",
-      "Instalação incluída",
-      "Cursos online de plantas",
-      "Médicos Online",
-      "+150 canais",
+      "Telemedicina — Médicos Online",
+      "+150 canais de TV",
       "Clube Bolanet — Carteirinha física e digital",
+      "Cursos online de plantas",
       "Atendimento via WhatsApp",
       "Câmera 24h de vigilância (adicional R$20/mês)",
     ],
   },
 ];
-
 function PlanCard({ plan }: { plan: PlanDef }) {
   const [open, setOpen] = useState(false);
   return (
@@ -131,10 +113,14 @@ function PlanCard({ plan }: { plan: PlanDef }) {
           </span>
         )}
         <p className="text-xs font-black uppercase text-primary sm:text-sm">{plan.name}</p>
+        <div className="mt-3 flex items-baseline gap-1">
+          <span className="text-3xl font-black text-foreground sm:text-4xl">{plan.price}</span>
+          <span className="text-sm text-muted-foreground">/mês</span>
+        </div>
         <div className="my-5 h-px bg-border" />
         <ul className="space-y-2.5 sm:space-y-3">
           {plan.features.map(item => (
-            <li key={item} className={`flex gap-2 text-[11px] font-semibold leading-snug sm:text-sm ${plan.features.indexOf(item) >= 5 ? "font-black text-primary" : ""}`}>
+            <li key={item} className={`flex gap-2 text-[11px] font-semibold leading-snug sm:text-sm ${item.includes("adicional") ? "font-black text-primary" : ""}`}>
               <Check className="h-4 w-4 shrink-0 text-primary sm:h-5 sm:w-5" />
               {item}
             </li>
@@ -162,7 +148,7 @@ export function Planos() {
           <h2 className="display-title mt-3 text-4xl sm:text-5xl">Muito mais dentro do seu plano</h2>
           <p className="mt-4 text-muted-foreground">Selecione o plano ideal e nossa equipe confirma a disponibilidade e o valor para a sua região pelo WhatsApp.</p>
         </div>
-        <div className="mx-auto mt-12 grid max-w-6xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5 lg:items-end">
+        <div className="mx-auto mt-12 grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8">
           {plans.map(plan => <PlanCard key={plan.name} plan={plan} />)}
         </div>
       </div>
@@ -172,28 +158,24 @@ export function Planos() {
 
 // fi = feature index, pi = plan index
 function cellContent(fi: number, pi: number): React.ReactNode {
-  if (fi === 5) return <span className="text-[10px] font-black text-primary sm:text-xs">+R$20</span>;
-  if ((fi === 1 || fi === 2) && pi === 1)
-    return <span className="text-[9px] font-black text-highlight sm:text-[11px]">escolha 1</span>;
-  if (pi === 0 && (fi === 1 || fi === 2 || fi === 4)) return <Minus className="text-muted-foreground" />;
-  if (pi === 1 && fi === 4) return <Minus className="text-muted-foreground" />;
-  if (pi === 2 && fi === 4) return <Minus className="text-muted-foreground" />;
+  if (fi === 0) return <span className="text-xs font-black text-primary sm:text-sm">{pi === 0 ? "500 Mbps" : "750 Mbps"}</span>;
+  if (fi === 7) return <span className="text-[10px] font-black text-primary sm:text-xs">+R$20</span>;
   return <Check className="text-primary" />;
 }
 
 const allFeatures = [
-  "Internet sem limites",
-  "Médicos Online",
-  "+150 canais",
-  "Cursos de plantas",
+  "Velocidade",
+  "Telemedicina",
+  "+150 canais de TV",
   "Clube Bolanet — Carteirinha",
-  "Câmera 24h de vigilância",
+  "Cursos de plantas",
   "Instalação incluída",
   "Atendimento via WhatsApp",
+  "Câmera 24h de vigilância",
 ];
 
 export function Comparador() {
-  const planNames = ["Start", "Plus", "Pro", "Ultra"];
+  const planNames = ["Bolanet 500\nR$99,90", "Bolanet 750\nR$119,90"];
 
   return (
     <section className="py-18 sm:py-24">
@@ -202,14 +184,14 @@ export function Comparador() {
           <h2 className="display-title text-center text-3xl sm:text-5xl">Compare e escolha</h2>
           <div className="mt-9 overflow-x-auto">
             <div className="min-w-[560px] overflow-hidden rounded-lg border border-border">
-              <div className="grid grid-cols-[minmax(0,1.4fr)_repeat(4,1fr)] bg-primary p-4 text-xs font-black text-primary-foreground sm:text-sm">
+              <div className="grid grid-cols-[minmax(0,1.4fr)_repeat(2,1fr)] bg-primary p-4 text-xs font-black text-primary-foreground sm:text-sm">
                 <span>Benefício</span>
                 {planNames.map((name, i) => (
                   <span key={name} className={`text-center ${i >= 1 && i <= 2 ? "text-highlight" : ""}`}>{name}</span>
                 ))}
               </div>
               {allFeatures.map((feature, fi) => (
-                <div key={feature} className="grid grid-cols-[minmax(0,1.4fr)_repeat(4,1fr)] items-center border-t border-border p-4 text-xs sm:text-sm">
+                <div key={feature} className="grid grid-cols-[minmax(0,1.4fr)_repeat(2,1fr)] items-center border-t border-border p-4 text-xs sm:text-sm">
                   <strong className="min-w-0 pr-2">{feature}</strong>
                   {planNames.map((_, pi) => (
                     <span key={pi} className="flex justify-center">
