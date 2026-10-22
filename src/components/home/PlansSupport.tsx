@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import React, { useState, type FormEvent } from "react";
 import { Check, Minus, MapPin, Radio, Sparkles, X } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
@@ -71,10 +71,8 @@ const plans: PlanDef[] = [
     name: "Bolanet Start",
     features: [
       "Internet sem limites de velocidade",
-      "Médicos Online",
-      "+150 canais",
       "Cursos online de plantas",
-      "Clube Bolanet",
+      "Câmera 24h de vigilância (adicional R$20/mês)",
     ],
   },
   {
@@ -83,10 +81,9 @@ const plans: PlanDef[] = [
     highlight: true,
     features: [
       "Internet sem limites de velocidade",
-      "Médicos Online",
-      "+150 canais",
       "Cursos online de plantas",
-      "Clube Bolanet",
+      "Médicos Online OU +150 canais (você escolhe 1)",
+      "Câmera 24h de vigilância (adicional R$20/mês)",
     ],
   },
   {
@@ -95,24 +92,21 @@ const plans: PlanDef[] = [
     highlight: true,
     features: [
       "Internet sem limites de velocidade",
+      "Cursos online de plantas",
       "Médicos Online",
       "+150 canais",
-      "Cursos online de plantas",
-      "Clube Bolanet",
-      "Câmera para vigiar sua casa 24h por dia",
-      "Gravação das imagens na nuvem",
+      "Câmera 24h de vigilância (adicional R$20/mês)",
     ],
   },
   {
     name: "Bolanet Ultra",
     features: [
       "Internet sem limites de velocidade",
+      "Cursos online de plantas",
       "Médicos Online",
       "+150 canais",
-      "Cursos online de plantas",
-      "Clube Bolanet",
-      "Câmera para vigiar sua casa 24h por dia",
-      "Gravação das imagens na nuvem",
+      "Clube Bolanet — Carteirinha física e digital",
+      "Câmera 24h de vigilância (adicional R$20/mês)",
     ],
   },
 ];
@@ -168,25 +162,28 @@ export function Planos() {
   );
 }
 
+// fi = feature index, pi = plan index
+function cellContent(fi: number, pi: number): React.ReactNode {
+  if (fi === 5) return <span className="text-[10px] font-black text-primary sm:text-xs">+R$20</span>;
+  if ((fi === 1 || fi === 2) && pi === 1)
+    return <span className="text-[9px] font-black text-highlight sm:text-[11px]">escolha 1</span>;
+  if (pi === 0 && (fi === 1 || fi === 2 || fi === 4)) return <Minus className="text-muted-foreground" />;
+  if (pi === 1 && fi === 4) return <Minus className="text-muted-foreground" />;
+  if (pi === 2 && fi === 4) return <Minus className="text-muted-foreground" />;
+  return <Check className="text-primary" />;
+}
+
 const allFeatures = [
-  "Internet sem limites de velocidade",
+  "Internet sem limites",
   "Médicos Online",
   "+150 canais",
-  "Cursos online de plantas",
-  "Clube Bolanet",
-  "Câmera para vigiar sua casa 24h",
-  "Gravação das imagens na nuvem",
+  "Cursos de plantas",
+  "Clube Bolanet — Carteirinha",
+  "Câmera 24h de vigilância",
 ];
 
 export function Comparador() {
   const planNames = ["Start", "Plus", "Pro", "Ultra"];
-  // quais features cada plano tem (por índice)
-  const planFeatures = [
-    [0,1,2,3,4],
-    [0,1,2,3,4],
-    [0,1,2,3,4,5,6],
-    [0,1,2,3,4,5,6],
-  ];
 
   return (
     <section className="py-18 sm:py-24">
@@ -204,18 +201,17 @@ export function Comparador() {
               {allFeatures.map((feature, fi) => (
                 <div key={feature} className="grid grid-cols-[minmax(0,1.4fr)_repeat(4,1fr)] items-center border-t border-border p-4 text-xs sm:text-sm">
                   <strong className="min-w-0 pr-2">{feature}</strong>
-                  {planFeatures.map((pf, pi) => (
+                  {planNames.map((_, pi) => (
                     <span key={pi} className="flex justify-center">
-                      {pf.includes(fi)
-                        ? <Check className="text-primary" />
-                        : <Minus className="text-muted-foreground" />}
+                      {cellContent(fi, pi)}
                     </span>
                   ))}
                 </div>
               ))}
             </div>
           </div>
-          <p className="mt-6 text-center text-sm font-bold text-muted-foreground">Consulte valores e disponibilidade pelo WhatsApp — nossa equipe responde rápido.</p>
+          <p className="mt-4 text-center text-xs text-muted-foreground">* No Plus, você escolhe entre Médicos Online ou +150 canais. A câmera é um adicional de R$20/mês disponível em qualquer plano.</p>
+          <p className="mt-3 text-center text-sm font-bold text-muted-foreground">Consulte valores e disponibilidade pelo WhatsApp — nossa equipe responde rápido.</p>
         </div>
       </div>
     </section>
@@ -299,12 +295,13 @@ export function ProvaSocial() {
 const faqs = [
   ["Quais planos a Bolanet oferece?", "Temos quatro opções: Start, Plus, Pro e Ultra. Os planos Plus e Pro são os mais escolhidos pelos nossos clientes. Fale com nossa equipe pelo WhatsApp para saber qual se encaixa melhor na sua realidade."],
   ["Como sei qual plano é ideal pra mim?", "Nossa equipe te orienta pelo WhatsApp. Informe seu CEP e em minutos você sabe a disponibilidade e o plano certo para sua região."],
-  ["O que está incluído em todos os planos?", "Internet sem limites de velocidade, Médicos Online, mais de 150 canais, cursos online de plantas e Clube Bolanet com descontos no comércio local."],
-  ["O que os planos Pro e Ultra têm a mais?", "Além de tudo dos planos anteriores, incluem uma câmera para vigiar sua casa 24 horas por dia e gravação das imagens na nuvem."],
-  ["Como funciona Médicos Online?", "Clientes Bolanet contam com atendimento médico online para cuidar da saúde sem sair de casa."],
-  ["Como acesso os mais de 150 canais?", "Os detalhes de acesso são informados pela equipe Bolanet durante a contratação."],
-  ["Como funciona o Clube Bolanet?", "Você recebe uma carteirinha física e digital, apresenta em um parceiro e garante o desconto definido por cada estabelecimento."],
-  ["Como funciona a câmera dos planos Pro e Ultra?", "O cliente recebe uma câmera para vigiar a casa 24 horas por dia, com imagens gravadas e acessíveis na nuvem."],
+  ["O que está incluído em todos os planos?", "Todos os planos incluem internet sem limites de velocidade e cursos online de plantas. A partir do Plus, você acrescenta Médicos Online ou +150 canais. Do Pro em diante, você tem os dois. O Clube Bolanet com Carteirinha é exclusivo do plano Ultra."],
+  ["O que o plano Plus tem a mais que o Start?", "No Plus você escolhe entre Médicos Online (telemedicina) ou +150 canais de IPTV — um benefício extra de acordo com o que faz mais sentido pra você."],
+  ["O que os planos Pro e Ultra têm a mais?", "Pro e Ultra incluem os dois benefícios juntos: Médicos Online e +150 canais. O Ultra acrescenta ainda o Clube Bolanet com Carteirinha física e digital."],
+  ["Como funciona Médicos Online?", "Clientes Bolanet contam com atendimento médico online para cuidar da saúde sem sair de casa. Disponível a partir do Bolanet Plus."],
+  ["Como acesso os mais de 150 canais?", "Os detalhes de acesso são informados pela equipe Bolanet durante a contratação. Disponível a partir do Bolanet Plus."],
+  ["Como funciona o Clube Bolanet?", "Você recebe uma carteirinha física e digital, apresenta em um parceiro e garante o desconto definido por cada estabelecimento. Benefício exclusivo do plano Ultra."],
+  ["Como funciona a câmera de vigilância?", "A câmera é um adicional disponível em qualquer plano por apenas R$20/mês. O cliente recebe uma câmera para vigiar a casa 24 horas por dia, com imagens gravadas e acessíveis na nuvem."],
   ["Como verifico se a Bolanet atende meu endereço?", "Informe seu nome e CEP nesta página — nossa equipe confirma a disponibilidade pelo WhatsApp rapidamente."],
 ];
 
