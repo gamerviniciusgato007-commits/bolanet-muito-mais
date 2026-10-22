@@ -70,8 +70,10 @@ const plans: PlanDef[] = [
   {
     name: "Bolanet Start",
     features: [
+      "Fibra óptica com instalação gratuita",
       "Internet sem limites de velocidade",
       "Cursos online de plantas",
+      "Suporte via WhatsApp 7 dias por semana",
       "Câmera 24h de vigilância (adicional R$20/mês)",
     ],
   },
@@ -80,9 +82,11 @@ const plans: PlanDef[] = [
     tag: "Mais popular",
     highlight: true,
     features: [
+      "Fibra óptica com instalação gratuita",
       "Internet sem limites de velocidade",
       "Cursos online de plantas",
       "Médicos Online OU +150 canais (você escolhe 1)",
+      "Suporte prioritário via WhatsApp",
       "Câmera 24h de vigilância (adicional R$20/mês)",
     ],
   },
@@ -91,21 +95,25 @@ const plans: PlanDef[] = [
     tag: "Recomendado",
     highlight: true,
     features: [
+      "Fibra óptica com instalação gratuita",
       "Internet sem limites de velocidade",
       "Cursos online de plantas",
       "Médicos Online",
       "+150 canais",
+      "Suporte prioritário via WhatsApp",
       "Câmera 24h de vigilância (adicional R$20/mês)",
     ],
   },
   {
     name: "Bolanet Ultra",
     features: [
+      "Fibra óptica com instalação gratuita",
       "Internet sem limites de velocidade",
       "Cursos online de plantas",
       "Médicos Online",
       "+150 canais",
       "Clube Bolanet — Carteirinha física e digital",
+      "Suporte VIP 24h via WhatsApp",
       "Câmera 24h de vigilância (adicional R$20/mês)",
     ],
   },
@@ -180,6 +188,8 @@ const allFeatures = [
   "Cursos de plantas",
   "Clube Bolanet — Carteirinha",
   "Câmera 24h de vigilância",
+  "Fibra + Instalação gratuita",
+  "Suporte via WhatsApp",
 ];
 
 export function Comparador() {
