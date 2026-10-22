@@ -33,7 +33,7 @@ export function Hero() {
         <div className="grid min-w-0 grid-cols-2 gap-2.5 sm:gap-5" aria-label="Planos em destaque">
           <article className="flex min-w-0 flex-col rounded-lg border border-primary-foreground/30 bg-background p-3 text-foreground shadow-brand sm:p-6">
             <span className="mb-2 w-fit rounded-full bg-primary/10 px-2 py-1 text-[8px] font-black uppercase text-primary sm:text-[9px]">Mais popular</span>
-            <p className="text-xs font-black uppercase text-primary">Bolanet 500</p>
+            <p className="text-xs font-black uppercase text-primary">Bolanet Essencial</p>
             <h2 className="mt-1 text-xl font-black text-primary sm:text-3xl">R$99,90<span className="text-sm font-semibold opacity-60">/mês</span></h2>
             <ul className="my-4 space-y-2 text-[11px] font-bold leading-snug sm:my-5 sm:text-sm">
               <li className="flex gap-1.5"><Check className="h-4 w-4 shrink-0 text-primary" />Internet até 500 Mbps</li>
@@ -43,12 +43,12 @@ export function Hero() {
               <li className="flex gap-1.5"><Check className="h-4 w-4 shrink-0 text-primary" />Cursos online de plantas</li>
               <li className="flex gap-1.5 text-primary"><Check className="h-4 w-4 shrink-0" />+ Câmera 24h por R$20/mês</li>
             </ul>
-            <Button asChild size="lg" className="mt-auto w-full px-2 text-xs sm:text-sm"><a href="#planos">Assinar Bolanet 500</a></Button>
+            <Button asChild size="lg" className="mt-auto w-full px-2 text-xs sm:text-sm"><a href="#planos">Assinar Essencial</a></Button>
           </article>
 
           <article className="relative flex min-w-0 flex-col rounded-lg border-2 border-highlight bg-background p-3 text-foreground shadow-brand sm:p-6">
             <span className="mb-2 w-fit rounded-full bg-highlight px-2 py-1 text-[8px] font-black uppercase text-highlight-foreground sm:text-[9px]">Recomendado</span>
-            <p className="text-xs font-black uppercase text-primary">Bolanet 750</p>
+            <p className="text-xs font-black uppercase text-primary">Bolanet Premium</p>
             <h2 className="mt-1 text-xl font-black leading-tight text-primary sm:text-3xl">R$119,90<span className="text-sm font-semibold opacity-60">/mês</span></h2>
             <ul className="my-4 space-y-2 text-[11px] font-bold leading-snug sm:my-5 sm:text-sm">
               <li className="flex gap-1.5"><Check className="h-4 w-4 shrink-0 text-primary" />Internet até 750 Mbps</li>
@@ -58,7 +58,7 @@ export function Hero() {
               <li className="flex gap-1.5"><Check className="h-4 w-4 shrink-0 text-primary" />Cursos online de plantas</li>
               <li className="flex gap-1.5 text-primary"><Check className="h-4 w-4 shrink-0" />+ Câmera 24h por R$20/mês</li>
             </ul>
-            <Button asChild size="lg" variant="sunshine" className="mt-auto w-full px-2 text-xs sm:text-sm"><a href="#planos">Assinar Bolanet 750</a></Button>
+            <Button asChild size="lg" variant="sunshine" className="mt-auto w-full px-2 text-xs sm:text-sm"><a href="#planos">Assinar Premium</a></Button>
           </article>
         </div>
       </div>
@@ -84,7 +84,7 @@ export function BenefitsMosaic() {
       <div className="section-shell">
         <div className="mb-10 max-w-3xl"><p className="text-sm font-extrabold uppercase text-primary">Uma assinatura. Muitas possibilidades.</p><h2 className="display-title mt-3 text-4xl sm:text-5xl">Veja tudo o que a Bolanet entrega</h2><p className="mt-4 text-muted-foreground">Mais do que navegar. Viva uma nova experiência dentro e fora de casa.</p></div>
         <div className="grid auto-rows-[220px] gap-3 md:grid-cols-4 md:auto-rows-[210px]">
-          {items.map(item => <article key={item.title} className={`group relative overflow-hidden rounded-lg bg-primary ${item.cls}`}><img loading="lazy" src={item.image} alt={`${item.title}: ${item.text}`} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"/><div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/25 to-transparent"/><div className="absolute insex-x-0 bottom-0 p-5 text-primary-foreground"><p className="text-xs font-extrabold uppercase text-highlight">{item.title}</p><h3 className="mt-1 text-2xl font-black">{item.text}</h3></div></article>)}
+          {items.map(item => <article key={item.title} className={`group relative overflow-hidden rounded-lg bg-primary ${item.cls}`}><img loading="lazy" src={item.image} alt={`${item.title}: ${item.text}`} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"/><div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/25 to-transparent"/><div className="absolute inset-x-0 bottom-0 p-5 text-primary-foreground"><p className="text-xs font-extrabold uppercase text-highlight">{item.title}</p><h3 className="mt-1 text-2xl font-black">{item.text}</h3></div></article>)}
         </div>
       </div>
     </section>
