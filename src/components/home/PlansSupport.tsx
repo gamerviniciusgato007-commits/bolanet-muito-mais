@@ -18,8 +18,9 @@ function PlanModal({ planName, onClose }: { planName: string; onClose: () => voi
     if (!name.trim()) { setError("Por favor, informe seu nome."); return; }
     const digits = cep.replace(/\D/g, "");
     if (digits.length !== 8) { setError("Digite um CEP válido com 8 números."); return; }
+    const extra = msg.trim() ? ` ${msg.trim()}` : "";
     const text = encodeURIComponent(
-      `Olá! Me chamo ${name.trim()} e tenho interesse no plano ${planName} da Bolanet. Meu CEP é ${cep.trim()}.${msg.trim() ? ` ${msg.trim()}` : " Pode me passar mais informações?"}`
+      `Olá! Me chamo ${name.trim()} e tenho interesse no plano ${planName} da Bolanet. Meu CEP é ${cep.trim()}.${extra}`
     );
     window.open(`https://wa.me/${WA_NUMBER}?text=${text}`, "_blank");
     onClose();
@@ -228,7 +229,7 @@ export function Comparador() {
               ))}
             </div>
           </div>
-          <p className="mt-4 text-center text-xs text-muted-foreground">* No Plus, você escolhe entre Médicos Online ou +150 canais. A câmera é um adicional de R$20/mês disponível em qualquer plano.</p>
+          <p className="mt-4 text-center text-xs text-muted-foreground">* A câmera de vigilância é um adicional de R$20/mês disponível em qualquer plano.</p>
           <p className="mt-3 text-center text-sm font-bold text-muted-foreground">Consulte valores e disponibilidade pelo WhatsApp — nossa equipe responde rápido.</p>
         </div>
       </div>
@@ -331,16 +332,15 @@ export function ProvaSocial() {
 }
 
 const faqs = [
-  ["Quais planos a Bolanet oferece?", "Temos quatro opções: Start, Plus, Pro e Ultra. Os planos Plus e Pro são os mais escolhidos pelos nossos clientes. Fale com nossa equipe pelo WhatsApp para saber qual se encaixa melhor na sua realidade."],
-  ["Como sei qual plano é ideal pra mim?", "Nossa equipe te orienta pelo WhatsApp. Informe seu CEP e em minutos você sabe a disponibilidade e o plano certo para sua região."],
-  ["O que está incluído em todos os planos?", "Todos os planos incluem internet sem limites de velocidade e cursos online de plantas. A partir do Plus, você acrescenta Médicos Online ou +150 canais. Do Pro em diante, você tem os dois. O Clube Bolanet com Carteirinha é exclusivo do plano Ultra."],
-  ["O que o plano Plus tem a mais que o Start?", "No Plus você escolhe entre Médicos Online (telemedicina) ou +150 canais de IPTV — um benefício extra de acordo com o que faz mais sentido pra vocé."],
-  ["O que os planos Pro e Ultra têm a mais?", "Pro e Ultra incluem os dois benefícios juntos: Médicos Online e +150 canais. O Ultra acrescenta ainda o Clube Bolanet com Carteirinha física e digital."],
-  ["Como funciona Médicos Online?", "Clientes Bolanet contam com atendimento médico online para cuidar da saúde sem sair de casa. Disponível a partir do Bolanet Plus."],
-  ["Como acesso os mais de 150 canais?", "Os detalhes de acesso são informados pela equipe Bolanet durante a contratação. Disponível a partir do Bolanet Plus."],
-  ["Como funciona o Clube Bolanet?", "Você recebe uma carteirinha física e digital, apresenta em um parceiro e garante o desconto definido por cada estabelecimento. Benefício exclusivo do plano Ultra."],
-  ["Como funciona a câmera de vigilância?", "A câmera é um adicional disponível em qualquer plano por apenas R$20/mês. O cliente recebe uma câmera para vigiar a casa 24 horas por dia, com imagens gravadas e acessíveis na nuvem."],
-  ["Como verifico se a Bolanet atende meu endereço?", "Informe seu nome e CEP nesta página — nossa equipe confirma a disponibilidade pelo WhatsApp rapidamente."],
+  ["Quais planos a Bolanet oferece?", "A Bolanet tem dois planos: Bolanet 500 (até 500 Mbps por R$99,90/mês) e Bolanet 750 (até 750 Mbps por R$119,90/mês). Os dois incluem os mesmos benefícios — a diferença é só a velocidade. Fale com a gente pelo WhatsApp e indicamos o melhor para você."],
+  ["Qual a diferença entre o Bolanet 500 e o Bolanet 750?", "A diferença é a velocidade: 500 Mbps ou 750 Mbps. Os benefícios incluídos são idênticos nos dois planos — Telemedicina, +150 canais de TV, Clube Bolanet com carteirinha, cursos online e câmera de vigilância disponível como adicional."],
+  ["O que está incluído nos dois planos?", "Ambos os planos incluem: instalação, Telemedicina (Médicos Online), +150 canais de TV, Clube Bolanet com carteirinha física e digital, cursos online de plantas e atendimento via WhatsApp. A câmera 24h de vigilância está disponível como adicional por R$20/mês."],
+  ["Como funciona a Telemedicina?", "Com a Telemedicina Bolanet você tem acesso a consultas médicas online sem sair de casa. Está incluída nos dois planos, sem custo adicional."],
+  ["Como acesso os mais de 150 canais de TV?", "Os detalhes de acesso são informados pela equipe Bolanet no momento da instalação. O benefício está incluso nos dois planos, sem custo adicional."],
+  ["Como funciona o Clube Bolanet?", "Você recebe uma carteirinha física e digital, apresenta em estabelecimentos parceiros e garante descontos exclusivos. Incluso nos dois planos."],
+  ["Como funciona a câmera de vigilância?", "A câmera é um adicional opcional por R$20/mês, disponível para qualquer plano. Com ela você monitora sua casa 24 horas por dia, com imagens gravadas e acessíveis na nuvem."],
+  ["Como verifico se a Bolanet atende meu endereço?", "Informe seu nome e CEP nesta página — nossa equipe confirma a disponibilidade pelo WhatsApp em minutos."],
+  ["Como é feita a instalação?", "A instalação é inclusa nos dois planos, sem custo. Nossa equipe técnica agenda o horário mais conveniente para você."],
 ];
 
 export function FAQ() {
