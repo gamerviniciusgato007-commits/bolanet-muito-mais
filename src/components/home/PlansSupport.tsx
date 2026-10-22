@@ -18,7 +18,8 @@ function PlanModal({ planName, onClose }: { planName: string; onClose: () => voi
     if (!name.trim()) { setError("Por favor, informe seu nome."); return; }
     const digits = cep.replace(/\D/g, "");
     if (digits.length !== 8) { setError("Digite um CEP válido com 8 números."); return; }
-    const extra = msg.trim() ? ` ${msg.trim()}` : "";
+    const negativa = /^\s*(n[aã]o|nao|n|nenhum[a]?|nada|ok|oks?|nope)\s*$/i;
+    const extra = msg.trim() && !negativa.test(msg) ? ` ${msg.trim()}` : "";
     const text = encodeURIComponent(
       `Olá! Me chamo ${name.trim()} e tenho interesse no plano ${planName} da Bolanet. Meu CEP é ${cep.trim()}.${extra}`
     );
@@ -71,7 +72,7 @@ type PlanDef = {
 
 const plans: PlanDef[] = [
   {
-    name: "Bolanet 500",
+    name: "Bolanet Essencial",
     speed: "500",
     price: "R$99,90",
     tag: "Mais popular",
@@ -88,7 +89,7 @@ const plans: PlanDef[] = [
     ],
   },
   {
-    name: "Bolanet 750",
+    name: "Bolanet Premium",
     speed: "750",
     price: "R$119,90",
     tag: "Recomendado",
@@ -202,7 +203,7 @@ const allFeatures = [
 ];
 
 export function Comparador() {
-  const planNames = ["Bolanet 500\nR$99,90", "Bolanet 750\nR$119,90"];
+  const planNames = ["Bolanet Essencial\nR$99,90", "Bolanet Premium\nR$119,90"];
 
   return (
     <section className="py-18 sm:py-24">
@@ -220,7 +221,7 @@ export function Comparador() {
               {allFeatures.map((feature, fi) => (
                 <div key={feature} className="grid grid-cols-[minmax(0,1.4fr)_repeat(2,1fr)] items-center border-t border-border p-4 text-xs sm:text-sm">
                   <strong className="min-w-0 pr-2">{feature}</strong>
-                  {planNames.map((_, pi) => (
+                  {planNames.map((^_, pi) => (
                     <span key={pi} className="flex justify-center">
                       {cellContent(fi, pi)}
                     </span>
@@ -253,8 +254,10 @@ export function Cobertura() {
     const digits = cep.replace(/\D/g, "");
     if (digits.length !== 8) { setError("Digite um CEP válido com 8 números."); return; }
     setError("");
+    const negativa = /^\s*(n[aã]o|nao|n|nenhum[a]?|nada|ok|oks?|nope)\s*$/i;
+    const extra = msg.trim() && !negativa.test(msg) ? ` ${msg.trim()}` : "";
     const text = encodeURIComponent(
-      `Olá! Me chamo ${name.trim()} e quero verificar se a Bolanet atende meu endereço. Meu CEP é ${cep.trim()}.${msg.trim() ? ` ${msg.trim()}` : ""}`
+      `Olá! Me chamo ${name.trim()} e quero verificar se a Bolanet atende meu endereço. Meu CEP é ${cep.trim()}.${extra}`
     );
     window.open(`https://wa.me/${WA_NUMBER}?text=${text}`, "_blank");
   }
@@ -332,15 +335,15 @@ export function ProvaSocial() {
 }
 
 const faqs = [
-  ["Quais planos a Bolanet oferece?", "A Bolanet tem dois planos: Bolanet 500 (até 500 Mbps por R$99,90/mês) e Bolanet 750 (até 750 Mbps por R$119,90/mês). Os dois incluem os mesmos benefícios — a diferença é só a velocidade. Fale com a gente pelo WhatsApp e indicamos o melhor para você."],
-  ["Qual a diferença entre o Bolanet 500 e o Bolanet 750?", "A diferença é a velocidade: 500 Mbps ou 750 Mbps. Os benefícios incluídos são idênticos nos dois planos — Telemedicina, +150 canais de TV, Clube Bolanet com carteirinha, cursos online e câmera de vigilância disponível como adicional."],
+  ["Quais planos a Bolanet oferece?", "A Bolanet tem dois planos: Bolanet Essencial (até 500 Mbps por R$99,90/mês) e Bolanet Premium (até 750 Mbps por R$119,90/mês). Os dois incluem os mesmos benefícios — a diferença é só a velocidade. Fale com a gente pelo WhatsApp e indicamos o melhor para você."],
+  ["Qual a diferença entre o Bolanet Essencial e o Bolanet Premium?", "A diferença é a velocidade: 500 Mbps no Essencial ou 750 Mbps no Premium. Os benefícios incluídos são idênticos nos dois planos — Telemedicina, +150 canais de TV, Clube Bolanet com carteirinha, cursos online e câmera de vigilância disponível como adicional."],
   ["O que está incluído nos dois planos?", "Ambos os planos incluem: instalação, Telemedicina (Médicos Online), +150 canais de TV, Clube Bolanet com carteirinha física e digital, cursos online de plantas e atendimento via WhatsApp. A câmera 24h de vigilância está disponível como adicional por R$20/mês."],
   ["Como funciona a Telemedicina?", "Com a Telemedicina Bolanet você tem acesso a consultas médicas online sem sair de casa. Está incluída nos dois planos, sem custo adicional."],
   ["Como acesso os mais de 150 canais de TV?", "Os detalhes de acesso são informados pela equipe Bolanet no momento da instalação. O benefício está incluso nos dois planos, sem custo adicional."],
   ["Como funciona o Clube Bolanet?", "Você recebe uma carteirinha física e digital, apresenta em estabelecimentos parceiros e garante descontos exclusivos. Incluso nos dois planos."],
   ["Como funciona a câmera de vigilância?", "A câmera é um adicional opcional por R$20/mês, disponível para qualquer plano. Com ela você monitora sua casa 24 horas por dia, com imagens gravadas e acessíveis na nuvem."],
   ["Como verifico se a Bolanet atende meu endereço?", "Informe seu nome e CEP nesta página — nossa equipe confirma a disponibilidade pelo WhatsApp em minutos."],
-  ["Como é feita a instalação?", "A instalação é inclusa nos dois planos, sem custo. Nossa equipe técnica agenda o horário mais conveniente para você."],
+  ["Como é feita a instalação?", "A instalação é inclusa nos dois planos, sem custo. Nossa equipe ténica agenda o horário mais conveniente para você."],
 ];
 
 export function FAQ() {
