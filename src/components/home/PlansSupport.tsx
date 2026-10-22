@@ -112,15 +112,15 @@ function PlanCard({ plan }: { plan: PlanDef }) {
             {plan.tag}
           </span>
         )}
-        <p className="text-xs font-black uppercase text-primary sm:text-sm">{plan.name}</p>
-        <div className="mt-3 flex items-baseline gap-1">
+        <p className="text-center text-xs font-black uppercase text-primary sm:text-sm">{plan.name}</p>
+        <div className="mt-3 flex items-baseline justify-center gap-1">
           <span className="text-3xl font-black text-foreground sm:text-4xl">{plan.price}</span>
           <span className="text-sm text-muted-foreground">/mês</span>
         </div>
         <div className="my-5 h-px bg-border" />
         <ul className="space-y-2.5 sm:space-y-3">
           {plan.features.map(item => (
-            <li key={item} className={`flex gap-2 text-[11px] font-semibold leading-snug sm:text-sm ${item.includes("adicional") ? "font-black text-primary" : ""}`}>
+            <li key={item} className={`flex gap-2 text-xs font-semibold leading-snug sm:text-base ${item.includes("adicional") ? "font-black text-primary" : ""}`}>
               <Check className="h-4 w-4 shrink-0 text-primary sm:h-5 sm:w-5" />
               {item}
             </li>
@@ -132,7 +132,7 @@ function PlanCard({ plan }: { plan: PlanDef }) {
           className="mt-auto w-full px-2 pt-6 text-xs sm:mt-8 sm:text-sm"
           onClick={() => setOpen(true)}
         >
-          Quero o {plan.name}
+          Assinar agora
         </Button>
       </article>
     </>
