@@ -221,7 +221,7 @@ export function Comparador() {
               {allFeatures.map((feature, fi) => (
                 <div key={feature} className="grid grid-cols-[minmax(0,1.4fr)_repeat(2,1fr)] items-center border-t border-border p-4 text-xs sm:text-sm">
                   <strong className="min-w-0 pr-2">{feature}</strong>
-                  {planNames.map((^_, pi) => (
+                  {planNames.map((_, pi) => (
                     <span key={pi} className="flex justify-center">
                       {cellContent(fi, pi)}
                     </span>
