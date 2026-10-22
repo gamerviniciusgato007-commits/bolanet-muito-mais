@@ -290,10 +290,30 @@ export function ProvaSocial() {
           <h2 className="display-title mt-3 text-4xl sm:text-5xl">Histórias de quem está conectado</h2>
         </div>
         <div className="mt-9 grid gap-4 md:grid-cols-3">
-          {[1, 2, 3].map(n => (
-            <div key={n} className="flex min-h-48 flex-col justify-between rounded-lg border-2 border-dashed border-primary/30 bg-background p-6">
+          {[
+            {
+              text: "Bola Net é uma ótima provedora. Estão sempre dispostos a ajudar com respostas instantâneas e atendimento humanizado. Eu trabalho com internet e eles nunca me deixaram na mão. ÓTIMO SERVIÇO.",
+              author: "Cliente Bolanet",
+              via: "Comentário de cliente",
+            },
+            {
+              text: "Gostaria de agradecer o serviço de vocês. Muita qualidade em todo o processo. Agradecimento especial ao Marcos e ao Cleber, técnicos que instalaram e arrumaram minha conexão quando deu problema. Vocês estão de parabéns!",
+              author: "Cliente via WhatsApp",
+              via: "WhatsApp",
+            },
+            {
+              text: "Eu queroo! É boom de mais ser cliente — ter uma ótima internet e ainda participar de sorteio! 😍",
+              author: "@marcely_cardoso09",
+              via: "Instagram",
+            },
+          ].map((t, i) => (
+            <div key={i} className="flex min-h-48 flex-col justify-between rounded-lg border border-primary/20 bg-background p-6">
               <Radio className="text-primary" />
-              <p className="font-bold text-muted-foreground">[DEPOIMENTO DE CLIENTE — SUBSTITUIR]</p>
+              <div className="mt-4">
+                <p className="font-bold leading-relaxed text-foreground">"{t.text}"</p>
+                <p className="mt-4 text-sm font-extrabold text-primary">{t.author}</p>
+                <p className="text-xs text-muted-foreground">{t.via}</p>
+              </div>
             </div>
           ))}
         </div>
