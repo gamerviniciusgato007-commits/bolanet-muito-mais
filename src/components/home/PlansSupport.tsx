@@ -108,7 +108,7 @@ function PlanCard({ plan }: { plan: PlanDef }) {
       {open && <PlanModal planName={plan.name} onClose={() => setOpen(false)} />}
       <article className={`relative flex min-w-0 flex-col overflow-hidden rounded-lg bg-background p-5 shadow-brand sm:p-8 ${plan.highlight ? "border-2 border-highlight lg:scale-[1.03] z-10" : "border border-primary/40"}`}>
         {plan.tag && (
-          <span className="mb-3 w-fit rounded-full bg-highlight px-3 py-1 text-[9px] font-black uppercase text-highlight-foreground sm:text-xs">
+          <span className="mb-3 self-center rounded-full bg-highlight px-3 py-1 text-[9px] font-black uppercase text-highlight-foreground sm:text-xs">
             {plan.tag}
           </span>
         )}
@@ -120,7 +120,7 @@ function PlanCard({ plan }: { plan: PlanDef }) {
         <div className="my-5 h-px bg-border" />
         <ul className="space-y-2.5 sm:space-y-3">
           {plan.features.map(item => (
-            <li key={item} className={`flex gap-2 text-xs font-semibold leading-snug sm:text-base ${item.includes("adicional") ? "font-black text-primary" : ""}`}>
+            <li key={item} className={`flex items-start gap-2 text-sm font-semibold leading-snug sm:text-base ${item.includes("adicional") ? "font-black text-primary" : ""}`}>
               <Check className="h-4 w-4 shrink-0 text-primary sm:h-5 sm:w-5" />
               {item}
             </li>
@@ -129,7 +129,7 @@ function PlanCard({ plan }: { plan: PlanDef }) {
         <Button
           size="xl"
           variant={plan.highlight ? "sunshine" : "default"}
-          className="mt-auto w-full px-2 pt-6 text-xs sm:mt-8 sm:text-sm"
+          className="mt-6 w-full text-sm font-extrabold sm:text-base"
           onClick={() => setOpen(true)}
         >
           Assinar agora
