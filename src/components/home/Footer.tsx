@@ -1,6 +1,6 @@
 const links = ["Planos","Benefícios","Médicos Online","TV","Cursos","Clube Bolanet","Monitoramento","Cobertura"];
 const service = [
-  { label: "Área do Cliente", href: "https://wa.me/5561998076886?text=Ol%C3%A1!%20Preciso%20de%20atendimento%20na%20minha%20conta%20Bolanet." },
+  { label: "Área do Cliente", href: "https://bolanet.sistemagesprov.com.br/central" },
   { label: "Suporte", href: "#suporte" },
   { label: "WhatsApp", href: "https://wa.me/5561998076886" },
   { label: "Privacidade", href: "#suporte" },
