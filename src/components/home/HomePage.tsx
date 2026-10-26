@@ -2,6 +2,7 @@ import { Header, WhatsAppFloat } from "./Header";
 import { BenefitsBar, BenefitsMosaic, Hero } from "./HeroBenefits";
 import { Clube, Cursos, Medicos, Monitoramento, TV } from "./Campaigns";
 import { Cobertura, Comparador, FAQ, Planos, ProvaSocial } from "./PlansSupport";
+import { Indicacao } from "./Indicacao";
 import { Footer } from "./Footer";
 import { HighlightsCarousel } from "./HighlightsCarousel";
 
@@ -23,6 +24,7 @@ export function HomePage() {
         <Comparador />
         <Cobertura />
         <ProvaSocial />
+        <Indicacao />
         <FAQ />
       </main>
       <Footer />
