@@ -82,7 +82,7 @@ export function Indicacao() {
             Conhece alguém que quer uma internet boa? Indique a Bolanet. A cada instalação confirmada, você recebe R$&nbsp;100 no Pix — sem limite de indicações.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-2">
-            {["R$ 100 por instalação", "Sem limite de indicações", "Qualquer plano", "No seu Pix"].map(x => (
+            {["R$ 100 por instalação", "Sem limite de indicações", "No seu Pix"].map(x => (
               <span key={x} className="rounded-full bg-primary px-3 py-2 text-[11px] font-extrabold uppercase text-primary-foreground">{x}</span>
             ))}
           </div>
